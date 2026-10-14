@@ -2,432 +2,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IRONFIT | Fitness Club</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: white;
-            line-height: 1.6;
-        }
-
-        header {
-            background: #080808;
-            padding: 18px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #ff4d24;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 22px;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #ff4d24;
-        }
-
-        .hero {
-            min-height: 570px;
-            display: flex;
-            align-items: center;
-            padding: 70px 8%;
-            background:
-                linear-gradient(90deg, #080808 15%, rgba(0,0,0,.65)),
-                url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=85")
-                center/cover;
-        }
-
-        .hero-content {
-            max-width: 650px;
-        }
-
-        .hero h1 {
-            font-size: clamp(42px, 6vw, 76px);
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .highlight {
-            color: #ff4d24;
-        }
-
-        .hero p {
-            color: #ddd;
-            font-size: 18px;
-            margin-bottom: 28px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: #ff4d24;
-            color: white;
-            text-decoration: none;
-            padding: 13px 25px;
-            border-radius: 5px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background: #e63b15;
-        }
-
-        section {
-            padding: 75px 8%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title h2 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-
-        .section-title p {
-            color: #aaa;
-        }
-
-        .about {
-            display: flex;
-            align-items: center;
-            gap: 45px;
-        }
-
-        .about img {
-            width: 48%;
-            height: 350px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .about-content {
-            flex: 1;
-        }
-
-        .about-content h2 {
-            font-size: 34px;
-            margin-bottom: 18px;
-        }
-
-        .about-content p {
-            color: #bbb;
-            margin-bottom: 20px;
-        }
-
-        .programs {
-            background: #191919;
-        }
-
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .card {
-            background: #242424;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform .3s;
-        }
-
-        .card:hover {
-            transform: translateY(-7px);
-        }
-
-        .card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 23px;
-        }
-
-        .card h3 {
-            color: #ff4d24;
-            font-size: 22px;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            color: #bbb;
-        }
-
-        .pricing-card {
-            text-align: center;
-            padding: 30px 22px;
-            border: 1px solid #444;
-            border-radius: 10px;
-        }
-
-        .pricing-card.featured {
-            border: 2px solid #ff4d24;
-        }
-
-        .price {
-            font-size: 38px;
-            font-weight: bold;
-            margin: 18px 0;
-        }
-
-        .price span {
-            font-size: 15px;
-            color: #aaa;
-        }
-
-        .pricing-card ul {
-            list-style: none;
-            margin: 22px 0;
-            color: #ccc;
-        }
-
-        .pricing-card li {
-            margin: 10px 0;
-        }
-
-        .contact {
-            background: #191919;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: auto;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 15px;
-            border: 1px solid #444;
-            background: #242424;
-            color: white;
-            border-radius: 5px;
-            font: inherit;
-        }
-
-        .contact-form textarea {
-            resize: vertical;
-        }
-
-        footer {
-            background: #080808;
-            text-align: center;
-            padding: 25px;
-            color: #aaa;
-        }
-
-        @media (max-width: 800px) {
-            header {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            nav {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 12px;
-            }
-
-            nav a {
-                margin: 0;
-            }
-
-            .about {
-                flex-direction: column;
-            }
-
-            .about img {
-                width: 100%;
-            }
-
-            .card-container {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                min-height: 500px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopEase | Fashion & Electronics</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-
 <body>
+  <header class="header">
+    <a class="logo" href="#">Shop<span>Ease</span></a>
 
-    <header>
-        <div class="logo">IRONFIT.</div>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#programs">Programs</a>
-            <a href="#pricing">Membership</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+    <form class="search" id="searchForm">
+      <input id="searchInput" type="search"
+             placeholder="Search products..." aria-label="Search products">
+      <button type="submit" aria-label="Search">⌕</button>
+    </form>
 
+    <button class="cart-button" id="openCart">
+      🛒 Cart <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </header>
+
+  <nav class="nav">
+    <a href="#home">Home</a>
+    <a href="#products" data-category="Fashion">Fashion</a>
+    <a href="#products" data-category="Electronics">Electronics</a>
+    <a href="#products" data-category="All">All Products</a>
+  </nav>
+
+  <main>
     <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>BUILD YOUR<br><span class="highlight">BEST SELF.</span></h1>
-            <p>
-                Train harder. Get stronger. Feel better.
-                Start your fitness journey with expert trainers
-                and a community that motivates you.
-            </p>
-            <a href="#pricing" class="btn">JOIN OUR GYM</a>
-        </div>
+      <div class="hero-content">
+        <span class="eyebrow">THE NEW SEASON IS HERE</span>
+        <h1>Style meets<br><span>technology.</span></h1>
+        <p>Discover trending fashion and the latest gadgets at prices you'll love.</p>
+        <a class="primary-button" href="#products">Shop Now →</a>
+      </div>
+      <div class="hero-art">
+        <div class="hero-circle"></div>
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=85"
+             alt="Modern fashion store">
+        <div class="sale-label">NEW<br>ARRIVALS</div>
+      </div>
     </section>
 
-    <section class="about" id="about">
-        <img
-            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=80"
-            alt="Personal training session">
-
-        <div class="about-content">
-            <h2>WELCOME TO <span class="highlight">IRONFIT</span></h2>
-            <p>
-                We believe fitness is more than lifting weights.
-                It is about building confidence, developing discipline,
-                and creating a healthier lifestyle.
-            </p>
-            <p>
-                Our gym offers modern equipment, experienced trainers,
-                and workout programs designed for beginners and
-                experienced athletes.
-            </p>
-            <a href="#programs" class="btn">EXPLORE PROGRAMS</a>
-        </div>
+    <section class="benefits">
+      <div>🚚 <span><strong>Free Shipping</strong><small>On orders over ₹999</small></span></div>
+      <div>🔒 <span><strong>Secure Shopping</strong><small>Shop with confidence</small></span></div>
+      <div>↩️ <span><strong>Easy Returns</strong><small>7-day return policy</small></span></div>
+      <div>💬 <span><strong>Customer Support</strong><small>We're here to help</small></span></div>
     </section>
 
-    <section class="programs" id="programs">
-        <div class="section-title">
-            <h2>OUR <span class="highlight">PROGRAMS</span></h2>
-            <p>Find the right workout for your fitness goals.</p>
+    <section class="shop-section" id="products">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">HANDPICKED FOR YOU</span>
+          <h2>Explore Products</h2>
         </div>
+        <select id="sortSelect" aria-label="Sort products">
+          <option value="featured">Featured</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
 
-        <div class="card-container">
-            <div class="card">
-                <img
-                    src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=700&q=80"
-                    alt="Strength training">
-                <div class="card-content">
-                    <h3>Strength Training</h3>
-                    <p>Build muscle, increase strength, and improve your overall performance.</p>
-                </div>
-            </div>
+      <div class="filters" id="filters">
+        <button class="filter active" data-category="All">All Products</button>
+        <button class="filter" data-category="Fashion">Fashion</button>
+        <button class="filter" data-category="Electronics">Electronics</button>
+      </div>
 
-            <div class="card">
-                <img
-                    src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=700&q=80"
-                    alt="Cardio workout">
-                <div class="card-content">
-                    <h3>Cardio Fitness</h3>
-                    <p>Improve stamina, support heart health, and stay active every day.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img
-                    src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80"
-                    alt="Yoga and flexibility">
-                <div class="card-content">
-                    <h3>Yoga & Flexibility</h3>
-                    <p>Improve mobility, balance, flexibility, and mental relaxation.</p>
-                </div>
-            </div>
-        </div>
+      <p class="results" id="resultsCount"></p>
+      <div class="product-grid" id="productGrid"></div>
     </section>
 
-    <section id="pricing">
-        <div class="section-title">
-            <h2>MEMBERSHIP <span class="highlight">PLANS</span></h2>
-            <p>Choose a plan that fits your goals and budget.</p>
-        </div>
-
-        <div class="card-container">
-            <div class="pricing-card">
-                <h3>Basic</h3>
-                <div class="price">₹999 <span>/ month</span></div>
-                <ul>
-                    <li>✓ Gym Access</li>
-                    <li>✓ Standard Equipment</li>
-                    <li>✓ Locker Facility</li>
-                </ul>
-                <a href="#contact" class="btn">GET STARTED</a>
-            </div>
-
-            <div class="pricing-card featured">
-                <h3>Premium</h3>
-                <div class="price">₹1,999 <span>/ month</span></div>
-                <ul>
-                    <li>✓ All Basic Benefits</li>
-                    <li>✓ Personal Training Sessions</li>
-                    <li>✓ Group Workout Classes</li>
-                </ul>
-                <a href="#contact" class="btn">JOIN PREMIUM</a>
-            </div>
-
-            <div class="pricing-card">
-                <h3>Annual</h3>
-                <div class="price">₹9,999 <span>/ year</span></div>
-                <ul>
-                    <li>✓ Full Gym Access</li>
-                    <li>✓ Fitness Assessment</li>
-                    <li>✓ Priority Membership</li>
-                </ul>
-                <a href="#contact" class="btn">JOIN ANNUAL</a>
-            </div>
-        </div>
+    <section class="newsletter">
+      <div>
+        <span class="eyebrow">SHOP SMARTER</span>
+        <h2>Good finds. Great prices.</h2>
+        <p>Explore your next favourite product at ShopEase.</p>
+      </div>
+      <a href="#products" class="primary-button">Explore Collection →</a>
     </section>
+  </main>
 
-    <section class="contact" id="contact">
-        <div class="section-title">
-            <h2>START YOUR <span class="highlight">JOURNEY</span></h2>
-            <p>Contact us to learn more about gym membership.</p>
-        </div>
+  <footer>
+    <a class="logo" href="#">Shop<span>Ease</span></a>
+    <p>Your everyday destination for fashion and electronics.</p>
+    <small>© 2026 ShopEase. Demo shopping website.</small>
+  </footer>
 
-        <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! Please connect this form to a backend to save your enquiry.');">
-            <input type="text" placeholder="Your Full Name" required>
-            <input type="email" placeholder="Your Email Address" required>
-            <input type="tel" placeholder="Your Phone Number" required>
-            <textarea rows="5" placeholder="Tell us about your fitness goals"></textarea>
-            <button type="submit" class="btn">SEND ENQUIRY</button>
-        </form>
-    </section>
+  <div class="overlay" id="overlay"></div>
 
-    <footer>
-        <p>© 2026 IRONFIT Fitness Club. All rights reserved.</p>
-        <p>Train Strong. Live Healthy.</p>
-    </footer>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart"
+         aria-hidden="true">
+    <div class="drawer-heading">
+      <h2>Your Cart (<span id="drawerCount">0</span>)</h2>
+      <button class="close-button" id="closeCart" aria-label="Close cart">✕</button>
+    </div>
 
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-footer">
+      <div class="total-row"><span>Subtotal</span><strong id="subtotal">₹0</strong></div>
+      <p class="shipping-note">Shipping calculated at checkout.</p>
+      <button class="primary-button checkout-button" id="checkoutButton">
+        Proceed to Checkout →
+      </button>
+      <button class="text-button" id="continueShopping">Continue Shopping</button>
+    </div>
+  </aside>
+
+  <div class="modal" id="checkoutModal" role="dialog"
+       aria-modal="true" aria-labelledby="checkoutTitle" hidden>
+    <div class="modal-card">
+      <button class="close-button modal-close" id="closeCheckout"
+              aria-label="Close checkout">✕</button>
+      <span class="eyebrow">ALMOST THERE</span>
+      <h2 id="checkoutTitle">Checkout</h2>
+      <p class="checkout-total">Order total: <strong id="checkoutTotal">₹0</strong></p>
+      <form id="checkoutForm">
+        <label for="customerName">Full Name</label>
+        <input id="customerName" name="name" required placeholder="Enter your name">
+
+        <label for="customerEmail">Email Address</label>
+        <input id="customerEmail" name="email" type="email" required placeholder="you@example.com">
+
+        <label for="customerAddress">Delivery Address</label>
+        <textarea id="customerAddress" name="address" required rows="3"
+                  placeholder="House number, street, city, PIN code"></textarea>
+
+        <button class="primary-button checkout-button" type="submit">
+          Place Demo Order
+        </button>
+      </form>
+      <p class="demo-note">Demo only: no payment will be collected and no order will be sent to a server.</p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

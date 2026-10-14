@@ -14,49 +14,50 @@ pipeline {
 
         stage('Test Application') {
             steps {
-                sh '''
-                    test -f index.html
-                    test -f Dockerfile
-                    grep -q "My First CI/CD Pipeline" index.html
-                    echo "Tests passed"
+                bat '''
+                    if not exist index.html exit /b 1
+                    if not exist Dockerfile exit /b 1
+
+                    findstr /C:"My First CI/CD Pipeline" index.html >NUL
+                    if errorlevel 1 exit /b 1
+
+                    echo Tests passed
                 '''
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t basic-cicd:${BUILD_NUMBER} .'
+                bat 'docker build -t basic-cicd:%BUILD_NUMBER% .'
             }
         }
 
         stage('Deploy Application') {
             steps {
-                sh '''
-                    docker rm -f basic-cicd-app || true
+                bat '''
+                    docker rm -f basic-cicd-app
+                    if errorlevel 1 echo No previous container to remove
 
-                    docker run -d \
-                      --name basic-cicd-app \
-                      --restart unless-stopped \
-                      -p 8081:80 \
-                      basic-cicd:${BUILD_NUMBER}
+                    docker run -d --name basic-cicd-app --restart unless-stopped -p 8081:80 basic-cicd:%BUILD_NUMBER%
+                    if errorlevel 1 exit /b 1
                 '''
             }
         }
 
         stage('Verify Deployment') {
             steps {
-                sh '''
-                    for i in $(seq 1 10); do
-                        if curl -fsS http://localhost:8081/ \
-                          | grep -q "My First CI/CD Pipeline"; then
-                            echo "Deployment successful"
-                            exit 0
-                        fi
-                        sleep 2
-                    done
+                bat '''
+                    for /L %%i in (1,1,10) do (
+                        curl.exe -fsS http://localhost:8081/ | findstr /C:"My First CI/CD Pipeline" >NUL
+                        if not errorlevel 1 (
+                            echo Deployment successful
+                            exit /b 0
+                        )
+                        timeout /t 2 /nobreak >NUL
+                    )
 
-                    docker logs basic-cicd-app || true
-                    exit 1
+                    docker logs basic-cicd-app
+                    exit /b 1
                 '''
             }
         }

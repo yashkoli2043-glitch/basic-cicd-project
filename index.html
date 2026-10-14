@@ -1,10 +1,433 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My DevOps Project</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRONFIT | Fitness Club</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #080808;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff4d24;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 22px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ff4d24;
+        }
+
+        .hero {
+            min-height: 570px;
+            display: flex;
+            align-items: center;
+            padding: 70px 8%;
+            background:
+                linear-gradient(90deg, #080808 15%, rgba(0,0,0,.65)),
+                url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=85")
+                center/cover;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 76px);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #ff4d24;
+        }
+
+        .hero p {
+            color: #ddd;
+            font-size: 18px;
+            margin-bottom: 28px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ff4d24;
+            color: white;
+            text-decoration: none;
+            padding: 13px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #e63b15;
+        }
+
+        section {
+            padding: 75px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #aaa;
+        }
+
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 45px;
+        }
+
+        .about img {
+            width: 48%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content h2 {
+            font-size: 34px;
+            margin-bottom: 18px;
+        }
+
+        .about-content p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+
+        .programs {
+            background: #191919;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #242424;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 23px;
+        }
+
+        .card h3 {
+            color: #ff4d24;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #bbb;
+        }
+
+        .pricing-card {
+            text-align: center;
+            padding: 30px 22px;
+            border: 1px solid #444;
+            border-radius: 10px;
+        }
+
+        .pricing-card.featured {
+            border: 2px solid #ff4d24;
+        }
+
+        .price {
+            font-size: 38px;
+            font-weight: bold;
+            margin: 18px 0;
+        }
+
+        .price span {
+            font-size: 15px;
+            color: #aaa;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin: 22px 0;
+            color: #ccc;
+        }
+
+        .pricing-card li {
+            margin: 10px 0;
+        }
+
+        .contact {
+            background: #191919;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border: 1px solid #444;
+            background: #242424;
+            color: white;
+            border-radius: 5px;
+            font: inherit;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        footer {
+            background: #080808;
+            text-align: center;
+            padding: 25px;
+            color: #aaa;
+        }
+
+        @media (max-width: 800px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0;
+            }
+
+            .about {
+                flex-direction: column;
+            }
+
+            .about img {
+                width: 100%;
+            }
+
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 500px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>My First CI/CD Pipeline</h1>
-    <p>Deployed automatically using Jenkins and Docker!</p>
+
+    <header>
+        <div class="logo">IRONFIT.</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#programs">Programs</a>
+            <a href="#pricing">Membership</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>BUILD YOUR<br><span class="highlight">BEST SELF.</span></h1>
+            <p>
+                Train harder. Get stronger. Feel better.
+                Start your fitness journey with expert trainers
+                and a community that motivates you.
+            </p>
+            <a href="#pricing" class="btn">JOIN OUR GYM</a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <img
+            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=80"
+            alt="Personal training session">
+
+        <div class="about-content">
+            <h2>WELCOME TO <span class="highlight">IRONFIT</span></h2>
+            <p>
+                We believe fitness is more than lifting weights.
+                It is about building confidence, developing discipline,
+                and creating a healthier lifestyle.
+            </p>
+            <p>
+                Our gym offers modern equipment, experienced trainers,
+                and workout programs designed for beginners and
+                experienced athletes.
+            </p>
+            <a href="#programs" class="btn">EXPLORE PROGRAMS</a>
+        </div>
+    </section>
+
+    <section class="programs" id="programs">
+        <div class="section-title">
+            <h2>OUR <span class="highlight">PROGRAMS</span></h2>
+            <p>Find the right workout for your fitness goals.</p>
+        </div>
+
+        <div class="card-container">
+            <div class="card">
+                <img
+                    src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=700&q=80"
+                    alt="Strength training">
+                <div class="card-content">
+                    <h3>Strength Training</h3>
+                    <p>Build muscle, increase strength, and improve your overall performance.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img
+                    src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=700&q=80"
+                    alt="Cardio workout">
+                <div class="card-content">
+                    <h3>Cardio Fitness</h3>
+                    <p>Improve stamina, support heart health, and stay active every day.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img
+                    src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80"
+                    alt="Yoga and flexibility">
+                <div class="card-content">
+                    <h3>Yoga & Flexibility</h3>
+                    <p>Improve mobility, balance, flexibility, and mental relaxation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="section-title">
+            <h2>MEMBERSHIP <span class="highlight">PLANS</span></h2>
+            <p>Choose a plan that fits your goals and budget.</p>
+        </div>
+
+        <div class="card-container">
+            <div class="pricing-card">
+                <h3>Basic</h3>
+                <div class="price">₹999 <span>/ month</span></div>
+                <ul>
+                    <li>✓ Gym Access</li>
+                    <li>✓ Standard Equipment</li>
+                    <li>✓ Locker Facility</li>
+                </ul>
+                <a href="#contact" class="btn">GET STARTED</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <h3>Premium</h3>
+                <div class="price">₹1,999 <span>/ month</span></div>
+                <ul>
+                    <li>✓ All Basic Benefits</li>
+                    <li>✓ Personal Training Sessions</li>
+                    <li>✓ Group Workout Classes</li>
+                </ul>
+                <a href="#contact" class="btn">JOIN PREMIUM</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Annual</h3>
+                <div class="price">₹9,999 <span>/ year</span></div>
+                <ul>
+                    <li>✓ Full Gym Access</li>
+                    <li>✓ Fitness Assessment</li>
+                    <li>✓ Priority Membership</li>
+                </ul>
+                <a href="#contact" class="btn">JOIN ANNUAL</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2>START YOUR <span class="highlight">JOURNEY</span></h2>
+            <p>Contact us to learn more about gym membership.</p>
+        </div>
+
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! Please connect this form to a backend to save your enquiry.');">
+            <input type="text" placeholder="Your Full Name" required>
+            <input type="email" placeholder="Your Email Address" required>
+            <input type="tel" placeholder="Your Phone Number" required>
+            <textarea rows="5" placeholder="Tell us about your fitness goals"></textarea>
+            <button type="submit" class="btn">SEND ENQUIRY</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2026 IRONFIT Fitness Club. All rights reserved.</p>
+        <p>Train Strong. Live Healthy.</p>
+    </footer>
+
 </body>
 </html>

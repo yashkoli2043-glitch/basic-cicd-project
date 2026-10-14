@@ -13,19 +13,21 @@ pipeline {
             }
         }
 
-        stage('Test Application') {
-            steps {
-                bat '''
-                    if not exist index.html exit /b 1
-                    if not exist Dockerfile exit /b 1
+     
+stage('Test Application') {
+    steps {
+        bat '''
+            if not exist index.html exit /b 1
+            if not exist style.css exit /b 1
+            if not exist script.js exit /b 1
+            if not exist Dockerfile exit /b 1
+            findstr /I /C:"ShopEase" index.html >NUL
+            if errorlevel 1 exit /b 1
+            echo All ShopEase application checks passed!
+        '''
+    }
+}
 
-                    findstr /I /C:"Gym" index.html >NUL
-                    if errorlevel 1 exit /b 1
-
-                    echo Tests passed
-                '''
-            }
-        }
 
         stage('Build Docker Image') {
             steps {

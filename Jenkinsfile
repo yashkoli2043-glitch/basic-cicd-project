@@ -47,22 +47,26 @@ stage('Test Application') {
             }
         }
 
-        stage('Verify Deployment') {
-            steps {
-                bat '''
-                    for /L %%i in (1,1,10) do (
-                        curl.exe -fsS http://localhost:8081/ | findstr /I /C:"Gym" >NUL
-                        if not errorlevel 1 goto :success
-                        timeout /t 2 /nobreak >NUL
-                    )
 
-                    docker logs basic-cicd-app
-                    exit /b 1
+stage('Verify Deployment') {
+    steps {
+        bat '''
+            echo Checking ShopEase website...
+            curl.exe -fsS http://localhost:8081/ -o response.html
+            if errorlevel 1 (
+                echo ERROR: Website is not responding.
+                docker logs basic-cicd-app
+                exit /b 1
+            )
 
-                    :success
-                    echo Deployment successful
-                '''
-            }
-        }
+            findstr /I /C:"ShopEase" response.html >NUL
+            if errorlevel 1 (
+                echo ERROR: ShopEase content was not found.
+                type response.html
+                exit /b 1
+            )
+
+            echo SUCCESS: ShopEase website is responding correctly.
+        '''
     }
 }
